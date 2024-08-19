@@ -1,10 +1,9 @@
-import NewsContent from './NewsContent';
-import NewsFooter from './NewsFooter';
-import NewsHeader from './NewsHeader';
+import { NewspaperDTO } from '../types/dto/paper/NewspaperDTO';
+import NewsItem from './NewsItem';
 
 const NewsList = () => {
   // TO DO - api를 통해 data fetch
-  const newsData = [
+  const newsData: NewspaperDTO[] = [
     {
       id: 1,
       isHotArticleBanner: true,
@@ -119,12 +118,11 @@ const NewsList = () => {
             key={news.title}
             className={`py-[16px] ${index != newsData.length - 1 ? 'border-b' : ''}`}
           >
-            <NewsHeader
+            <NewsItem
               isHotArticleBanner={news.isHotArticleBanner}
               sector={news.sector}
-            />
-            <NewsContent title={news.title} summaries={news.summaries} />
-            <NewsFooter
+              title={news.title}
+              summaries={news.summaries}
               tags={news.tags}
               publishedAt={news.publishedAt}
               createdAt={news.createdAt}
