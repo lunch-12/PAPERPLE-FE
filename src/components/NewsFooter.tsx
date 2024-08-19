@@ -33,8 +33,8 @@ const NewsFooter = ({ tags }: NewsFooterProps) => {
           <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]">
             write
           </button>
-          <OpenInBrowserIcon width={22} />
-          <ShareIcon width={22} />
+          <OpenInBrowserIcon width={22} height={22} />
+          <ShareIcon width={22} height={22} />
         </div>
       </div>
     </div>

@@ -1,12 +1,9 @@
-import NewsFooter from './NewsFooter';
-
 interface NewsContentProps {
   title: string;
   summaries: string[];
-  tags: string[];
 }
 
-const NewsContent = ({ title, summaries, tags }: NewsContentProps) => {
+const NewsContent = ({ title, summaries }: NewsContentProps) => {
   return (
     <article className="mt-[16px]">
       <p className="text-[#26262C] font-semibold">{title}</p>
@@ -22,7 +19,6 @@ const NewsContent = ({ title, summaries, tags }: NewsContentProps) => {
         }
         alt="기사의 대표 이미지"
       />
-      <NewsFooter tags={tags} />
     </article>
   );
 };
