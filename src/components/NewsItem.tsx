@@ -7,6 +7,7 @@ interface NewsItemProps {
   isHotArticleBanner: boolean;
   sector: string;
   title: string;
+  link: string;
   summaries: string[];
   tags: string[];
   publishedAt: string;
@@ -19,6 +20,7 @@ const NewsItem = ({
   isHotArticleBanner,
   sector,
   title,
+  link,
   summaries,
   tags,
   publishedAt,
@@ -30,7 +32,7 @@ const NewsItem = ({
       {isShowHeader && (
         <NewsHeader isHotArticleBanner={isHotArticleBanner} sector={sector} />
       )}
-      <NewsContent title={title} summaries={summaries} />
+      <NewsContent title={title} link={link} summaries={summaries} />
       <NewsFooter
         tags={tags}
         publishedAt={publishedAt}

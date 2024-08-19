@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NewspaperInPaperDTO } from '../types/dto/paper/PaperDTO';
 import NewsItem from './NewsItem';
+import { openLinkInNewBrowser } from '../utils/browserUtils';
 
 interface PaperContentProps {
   content: string;
@@ -25,6 +26,7 @@ const PaperContent = ({ content, newspaper }: PaperContentProps) => {
               isHotArticleBanner={false}
               sector={newspaper.sector}
               title={newspaper.title}
+              link={newspaper.link}
               summaries={newspaper.summaries}
               tags={newspaper.tags}
               publishedAt={newspaper.publishedAt}
@@ -35,9 +37,12 @@ const PaperContent = ({ content, newspaper }: PaperContentProps) => {
             <article>
               <div className="flex justify-center">
                 <div>
-                  <p className="text-subtitle font-semibold">
+                  <button
+                    className="text-subtitle font-semibold hover:underline text-left"
+                    onClick={() => openLinkInNewBrowser(newspaper.link)}
+                  >
                     {newspaper.title}
-                  </p>
+                  </button>
                   <button
                     onClick={toggleSummaryVisibility}
                     className="text-subtitle text-[12px] font-semibold mt-[4px]"

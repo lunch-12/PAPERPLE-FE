@@ -1,12 +1,22 @@
 interface NewsContentProps {
   title: string;
+  link: string;
   summaries: string[];
 }
 
-const NewsContent = ({ title, summaries }: NewsContentProps) => {
+const NewsContent = ({ title, link, summaries }: NewsContentProps) => {
+  const openLinkInNewBrowser = (link: string) => {
+    window.open(link, '_blank');
+  };
+
   return (
     <article>
-      <p className="text-[#26262C] font-semibold">{title}</p>
+      <button
+        className="text-[#26262C] font-semibold hover:underline text-left"
+        onClick={() => openLinkInNewBrowser(link)}
+      >
+        {title}
+      </button>
       <ul className="mt-[16px] text-[#444444] text-[12px]">
         {summaries.map(summary => (
           <li key={summary}>{'- ' + summary}</li>

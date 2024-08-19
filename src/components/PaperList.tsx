@@ -46,6 +46,7 @@ const PaperList = () => {
       likeNum: 17,
       newspaper: {
         title: 'CJ제일제당, 파리 ‘비비고 시장’에서 K푸드로 세계인 홀렸다',
+        link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
         image:
           'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
         summaries: [

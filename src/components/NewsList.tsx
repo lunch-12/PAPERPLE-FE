@@ -8,6 +8,7 @@ const NewsList = () => {
       id: 1,
       isHotArticleBanner: true,
       title: 'CJ제일제당, 파리 ‘비비고 시장’에서 K푸드로 세계인 홀렸다',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image:
         'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
       summaries: [
@@ -26,6 +27,7 @@ const NewsList = () => {
       id: 2,
       isHotArticleBanner: false,
       title: 'Another News Title',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image: 'https://example.com/another-image.jpg',
       summaries: [
         'Another summary point 1',
@@ -43,6 +45,7 @@ const NewsList = () => {
       id: 3,
       isHotArticleBanner: true,
       title: 'Another News Title',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image: 'https://example.com/another-image.jpg',
       summaries: [
         'Another summary point 1',
@@ -60,6 +63,7 @@ const NewsList = () => {
       id: 4,
       isHotArticleBanner: true,
       title: 'CJ제일제당, 파리 ‘비비고 시장’에서 K푸드로 세계인 홀렸다',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image:
         'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
       summaries: [
@@ -78,6 +82,7 @@ const NewsList = () => {
       id: 5,
       isHotArticleBanner: false,
       title: 'Another News Title',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image: 'https://example.com/another-image.jpg',
       summaries: [
         'Another summary point 1',
@@ -95,6 +100,7 @@ const NewsList = () => {
       id: 6,
       isHotArticleBanner: true,
       title: 'Another News Title',
+      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
       image: 'https://example.com/another-image.jpg',
       summaries: [
         'Another summary point 1',
@@ -122,6 +128,7 @@ const NewsList = () => {
               isHotArticleBanner={news.isHotArticleBanner}
               sector={news.sector}
               title={news.title}
+              link={news.link}
               summaries={news.summaries}
               tags={news.tags}
               publishedAt={news.publishedAt}
