@@ -19,6 +19,9 @@ const NewsList = () => {
       tags: ['IT/과학', '반도체'],
       date: '2023년 12월 28일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
     {
       id: 2,
@@ -33,6 +36,9 @@ const NewsList = () => {
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
     {
       id: 3,
@@ -47,6 +53,9 @@ const NewsList = () => {
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
     {
       id: 4,
@@ -62,6 +71,9 @@ const NewsList = () => {
       tags: ['IT/과학', '반도체'],
       date: '2023년 12월 28일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
     {
       id: 5,
@@ -76,6 +88,9 @@ const NewsList = () => {
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
     {
       id: 6,
@@ -90,6 +105,9 @@ const NewsList = () => {
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
       sector: 'CJ제일제당',
+      publishedAt: '중앙일보',
+      createdAt: '2024년 08월 19일',
+      likeNum: 17,
     },
   ];
 
@@ -106,7 +124,12 @@ const NewsList = () => {
               sector={news.sector}
             />
             <NewsContent title={news.title} summaries={news.summaries} />
-            <NewsFooter tags={news.tags} />
+            <NewsFooter
+              tags={news.tags}
+              publishedAt={news.publishedAt}
+              createdAt={news.createdAt}
+              likeNum={news.likeNum}
+            />
           </li>
         ))}
       </ul>

@@ -4,9 +4,17 @@ import { ReactComponent as OpenInBrowserIcon } from '../assets/svg/OpenInBrowser
 
 interface NewsFooterProps {
   tags: string[];
+  publishedAt: string;
+  createdAt: string;
+  likeNum: number;
 }
 
-const NewsFooter = ({ tags }: NewsFooterProps) => {
+const NewsFooter = ({
+  tags,
+  publishedAt,
+  likeNum,
+  createdAt,
+}: NewsFooterProps) => {
   return (
     <div className="flex flex-col mt-[16px]">
       <ul className="flex items-center">
@@ -22,13 +30,13 @@ const NewsFooter = ({ tags }: NewsFooterProps) => {
       </ul>
       <div className="mt-[4px] flex items-center justify-between">
         <div className="text-[#4C4C57] text-[12px] flex items-center justify-center">
-          <p>중앙일보,</p>
-          <p className="ml-[4px]">2023년 12월 28일</p>
+          <p>{publishedAt},</p>
+          <p className="ml-[4px]">{createdAt}</p>
         </div>
         <div className="flex items-center justify-center gap-[8px]">
           <div className="flex items-center justify-center gap-[2px]">
             <FavoriteIcon width={16} height={16} />
-            <p className="text-[14px]">17</p>
+            <p className="text-[14px]">{likeNum}</p>
           </div>
           <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]">
             write
