@@ -1,5 +1,6 @@
 import { ReactComponent as FavoriteIcon } from '../assets/svg/FavoriteIcon.svg';
 import { ReactComponent as ShareIcon } from '../assets/svg/ShareIcon.svg';
+import { ReactComponent as OpenInBrowserIcon } from '../assets/svg/OpenInBrowserIcon.svg';
 
 interface NewsFooterProps {
   tags: string[];
@@ -24,15 +25,16 @@ const NewsFooter = ({ tags }: NewsFooterProps) => {
           <p>중앙일보,</p>
           <p className="ml-[4px]">2023년 12월 28일</p>
         </div>
-        <div className="flex items-center justify-center">
-          <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-[8px]">
+          <div className="flex items-center justify-center gap-[2px]">
             <FavoriteIcon width={16} height={16} />
-            <p className="ml-[1px] text-[14px]">17</p>
+            <p className="text-[14px]">17</p>
           </div>
-          <button className="text-[10px] px-[6px] py-[2px] text-teritary-title mx-[8px] border border-teritary-title rounded-[8px]">
+          <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]">
             write
           </button>
-          <ShareIcon />
+          <OpenInBrowserIcon width={22} />
+          <ShareIcon width={22} />
         </div>
       </div>
     </div>
