@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ContentsTab from '../components/ContentsTab';
 import NewsList from '../components/NewsList';
 import { Tab } from '../types/enums';
+import PaperList from '../components/PaperList';
 
 const Home = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.News);
@@ -15,7 +16,7 @@ const Home = () => {
         />
       </div>
       <div className="px-[15px]">
-        {selectedTab === Tab.News ? <NewsList /> : <div></div>}
+        {selectedTab === Tab.News ? <NewsList /> : <PaperList />}
       </div>
     </div>
   );

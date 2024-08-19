@@ -5,7 +5,7 @@ interface NewsContentProps {
 
 const NewsContent = ({ title, summaries }: NewsContentProps) => {
   return (
-    <article className="mt-[16px]">
+    <article>
       <p className="text-[#26262C] font-semibold">{title}</p>
       <ul className="mt-[16px] text-[#444444] text-[12px]">
         {summaries.map(summary => (

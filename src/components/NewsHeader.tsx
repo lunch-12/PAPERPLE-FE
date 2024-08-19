@@ -7,7 +7,7 @@ interface ContentsTabProps {
 
 const NewsHeader = ({ isHotArticleBanner, sector }: ContentsTabProps) => {
   return (
-    <div className="w-full flex items-center justify-between">
+    <div className="w-full flex items-center justify-between mb-[16px]">
       {isHotArticleBanner && (
         <p className="w-[57px] h-[28px] rounded-full bg-sub-background-1 text-[14px] text-system-white flex items-center justify-center">
           Hot
