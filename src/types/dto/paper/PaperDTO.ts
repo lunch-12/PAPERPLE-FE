@@ -13,6 +13,7 @@ export interface PaperDTO {
 
 export interface NewspaperInPaperDTO {
   title: string;
+  link: string;
   image: string;
   summaries: string[];
   tags: string[];
