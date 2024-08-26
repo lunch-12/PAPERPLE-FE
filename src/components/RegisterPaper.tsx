@@ -17,7 +17,7 @@ enum ModalType {
 
 const RegisterPaper = () => {
   const [url, setUrl] = useState('');
-  const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Valid);
+  const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Invalid);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
@@ -170,7 +170,18 @@ const RegisterPaper = () => {
                   </div>
                 )}
                 {urlStatus === UrlStatus.Invalid && (
-                  <span className="text-red-500 text-sm">유효하지 않은 URL입니다.</span>
+                  <div className="flex-shrink-0 flex flex-row justify-end items-end overflow-hidden py-[3px]">
+                    <div className="w-[14px] h-[14px] relative">
+                      <img
+                        src="https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt="Check icon"
+                      />
+                    </div>
+                    <span className="flex-shrink-0 text-[#B3261E] whitespace-nowrap text-[10px] leading-[14px] font-semibold flex items-center">
+                      URL을 다시 한번 확인해주세요.
+                    </span>
+                  </div>
                 )}
               </div>
             </div>
