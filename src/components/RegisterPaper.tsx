@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 enum UrlStatus {
   Idle = 'idle',
@@ -15,14 +15,34 @@ enum ModalType {
   InvalidURL = 'invalidURL',
 }
 
-const RegisterPaper = () => {
+interface Paper {
+  url: string;
+  content: string;
+  tags: string[];
+}
+
+interface RegisterPaperProps {
+  isEditing?: boolean;
+  existingPaper?: Paper | null;
+}
+
+const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPaperProps) => {
   const [url, setUrl] = useState('');
   const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Loading);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
-  const [modalType, setModalType] = useState<ModalType>(ModalType.InvalidURL);
+  const [modalType, setModalType] = useState<ModalType>(ModalType.None);
   const [isNavigating, setIsNavigating] = useState(false);
+
+  useEffect(() => {
+    if (isEditing && existingPaper !== null) {
+      // 기존 페이퍼 데이터를 로드
+      setUrl(existingPaper.url);
+      setContent(existingPaper.content);
+      setTagList(existingPaper.tags);
+    }
+  }, [isEditing, existingPaper]);
 
 
   const handleSubmit = () => {
@@ -34,6 +54,16 @@ const RegisterPaper = () => {
     if (urlStatus === UrlStatus.Invalid) {
       setModalType(ModalType.InvalidURL);
       return;
+    }
+
+    if (isEditing) {
+      // 수정 API 호출
+      console.log('수정 중:', { url, content, tags: tagList });
+      // updatePaper({ url, content, tags: tagList });
+    } else {
+      // 등록 API 호출
+      console.log('등록 중:', { url, content, tags: tagList });
+      // createPaper({ url, content, tags: tagList });
     }
 
     console.log('URL:', url);
@@ -290,7 +320,7 @@ const RegisterPaper = () => {
             className="flex-shrink-0 rounded-[12px] flex flex-col justify-center items-end px-[16px] py-[8px] bg-[rgba(191,_69,_136,_0.8)]"
           >
             <span
-              className="flex-shrink-0 text-[#FFFFFF] whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">등록하기</span>
+              className="flex-shrink-0 text-[#FFFFFF] whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">{isEditing ? '수정' : '등록하기'}</span>
           </button>
         </div>
       </div>
