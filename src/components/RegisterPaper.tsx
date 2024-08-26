@@ -345,6 +345,7 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
             </div>
             <div
               className="flex-shrink-0 self-stretch rounded-[4px] flex flex-col justify-center px-[8px] py-[4px] overflow-hidden border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
+              // To-do: 띄어쓰기, 특수문자 금지
               <input
                 type="text"
                 value={tags}
@@ -361,6 +362,7 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
               {tagList.map((tag, index) => (
                 <div key={index} className="flex-shrink-0 rounded-[4px] flex flex-row justify-start items-center gap-x-[4px] px-[8px] py-[4px] overflow-hidden bg-[#F2F2F7]">
                   <span className="flex-shrink-0 w-auto h-[16px] text-[#5A5A5A] whitespace-nowrap text-[12px] leading-[16px] font-medium">{tag}</span>
+                  // To-do: 삭제 버튼을 클릭했을 때 태그를 삭제하는 함수를 작성하세요.
                   <span className="flex-shrink-0 text-[#B3B3B3] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center justify-center text-center">❌</span>
                 </div>
               ))}
