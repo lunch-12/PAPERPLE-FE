@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 enum UrlStatus {
   Idle = 'idle',
@@ -29,7 +30,10 @@ interface RegisterPaperProps {
 }
 
 const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPaperProps) => {
-  const [url, setUrl] = useState('');
+  const location = useLocation();
+  const initialLink = location.state?.link || '';
+
+  const [url, setUrl] = useState(initialLink);
   const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Idle);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
@@ -361,7 +365,6 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
               {tagList.map((tag, index) => (
                 <div key={index} className="flex-shrink-0 rounded-[4px] flex flex-row justify-start items-center gap-x-[4px] px-[8px] py-[4px] overflow-hidden bg-[#F2F2F7]">
                   <span className="flex-shrink-0 w-auto h-[16px] text-[#5A5A5A] whitespace-nowrap text-[12px] leading-[16px] font-medium">{tag}</span>
-                  // Todo- 태그 삭제 이벤트 처리
                   <span className="flex-shrink-0 text-[#B3B3B3] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center justify-center text-center">❌</span>
                 </div>
               ))}

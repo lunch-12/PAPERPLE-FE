@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Home from './pages/Home';
+import RegisterPaper from './components/RegisterPaper';
 import { useEffect } from 'react';
 import setScreenHeight from './utils/setScreenHeight';
 import 'pretendard/dist/web/static/pretendard.css';
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/register-paper" element={<RegisterPaper />} />
         </Routes>
       </BrowserRouter>
     </div>
