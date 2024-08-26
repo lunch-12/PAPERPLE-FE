@@ -14,6 +14,7 @@ enum ModalType {
   TryToExit = 'tryToExit',
   Loading = 'loading',
   InvalidURL = 'invalidURL',
+  UnavailableURL = 'unavailableURL',
 }
 
 interface Paper {
@@ -33,7 +34,9 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
-  const [modalType, setModalType] = useState<ModalType>(ModalType.None);
+  const [modalType, setModalType] = useState<ModalType>(
+    ModalType.None,
+  );
   const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
@@ -45,8 +48,8 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
     }
   }, [isEditing, existingPaper]);
 
-
   const handleSubmit = () => {
+    console.log(urlStatus);
     if (urlStatus === UrlStatus.Loading) {
       setModalType(ModalType.Loading);
       return;
@@ -54,6 +57,11 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
 
     if (urlStatus === UrlStatus.Invalid) {
       setModalType(ModalType.InvalidURL);
+      return;
+    }
+
+    if (urlStatus === UrlStatus.Unavailable) {
+      setModalType(ModalType.UnavailableURL);
       return;
     }
 
@@ -160,6 +168,38 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
             <p
               className="flex-shrink-0 text-[#5A5A5A] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center">
               입력하신 뉴스 URL을 다시 한 번 확인해주세요
+            </p>
+            <div
+              className="flex-shrink-0 self-stretch justify-end flex flex-row items-center gap-x-[4px] gap-y-0 pl-0 pr-0 py-[4px]">
+              <button
+                onClick={closeModal}
+                className="flex-shrink-0 rounded-[4px] flex flex-col justify-center px-[8px] py-[4px] bg-[#E5E5EA]"
+              >
+                <span
+                  className="flex-shrink-0 text-[#444444] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center">다시 시도하기</span>
+              </button>
+              <button
+                onClick={closeModal}
+                className="flex-shrink-0 rounded-[4px] flex flex-col justify-end items-end px-[8px] py-[4px] bg-[#1E1E1E]"
+              >
+                <span
+                  className="flex-shrink-0 text-[#FFFFFF] whitespace-nowrap text-[8px] leading-[11px] font-semibold flex items-center">이야기만 등록하기</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 모달 4: 해당 플랫폼은 정보를 가져올 수 없습니다 */}
+      {modalType === ModalType.UnavailableURL && (
+        <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 px-[64px]">
+          <div
+            className=" rounded-[8px] w-[262px] h-[106px] flex flex-col gap-y-[12px] gap-x-[12px] p-[16px] overflow-hidden bg-[#FFFFFF] border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
+            <h2
+              className="flex-shrink-0 text-[#3D3D3D] whitespace-nowrap text-[12px] leading-[16px] font-semibold flex items-center">뉴스 정보를 가져오는데 실패했습니다</h2>
+            <p
+              className="flex-shrink-0 text-[#5A5A5A] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center">
+              다른 플랫폼의 뉴스를 입력해보세요
             </p>
             <div
               className="flex-shrink-0 self-stretch justify-end flex flex-row items-center gap-x-[4px] gap-y-0 pl-0 pr-0 py-[4px]">
