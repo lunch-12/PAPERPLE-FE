@@ -5,6 +5,7 @@ enum UrlStatus {
   Loading = 'loading',
   Valid = 'valid',
   Invalid = 'invalid',
+  Unavailable = 'unavailable',
 }
 
 // Todo- tryToExit 이벤트 처리
@@ -28,7 +29,7 @@ interface RegisterPaperProps {
 
 const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPaperProps) => {
   const [url, setUrl] = useState('');
-  const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Loading);
+  const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Unavailable);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
@@ -246,6 +247,20 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
                     </div>
                     <span className="flex-shrink-0 text-[#B3261E] whitespace-nowrap text-[10px] leading-[14px] font-semibold flex items-center">
                       URL을 다시 한번 확인해주세요
+                    </span>
+                  </div>
+                )}
+                {urlStatus === UrlStatus.Unavailable && (
+                  <div className="flex-shrink-0 flex flex-row justify-end items-end overflow-hidden py-[3px]">
+                    <div className="w-[14px] h-[14px] relative">
+                      <img
+                        src="https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        alt="Invalid icon"
+                      />
+                    </div>
+                    <span className="flex-shrink-0 text-[#B3261E] whitespace-nowrap text-[10px] leading-[14px] font-semibold flex items-center">
+                      해당 플랫폼은 정보를 가져올 수 없습니다
                     </span>
                   </div>
                 )}
