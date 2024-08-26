@@ -21,7 +21,7 @@ const RegisterPaper = () => {
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
-  const [modalType, setModalType] = useState<ModalType>(ModalType.Loading);
+  const [modalType, setModalType] = useState<ModalType>(ModalType.InvalidURL);
   const [isNavigating, setIsNavigating] = useState(false);
 
 
@@ -121,18 +121,30 @@ const RegisterPaper = () => {
 
       {/* 모달 3: 유효하지 않은 URL */}
       {modalType === ModalType.InvalidURL && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg p-8 w-80">
-            <h2 className="text-lg font-semibold mb-2">유효하지 않은 URL입니다</h2>
-            <p className="text-sm text-gray-600 mb-4">
-              입력하신 URL이 유효하지 않습니다. 다시 확인해 주세요.
+        <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 px-[64px]">
+          <div
+            className=" rounded-[8px] w-[262px] h-[106px] flex flex-col gap-y-[12px] gap-x-[12px] p-[16px] overflow-hidden bg-[#FFFFFF] border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
+            <h2
+              className="flex-shrink-0 text-[#3D3D3D] whitespace-nowrap text-[12px] leading-[16px] font-semibold flex items-center">올바르지 않은 URL입니다</h2>
+            <p
+              className="flex-shrink-0 text-[#5A5A5A] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center">
+              입력하신 뉴스 URL을 다시 한 번 확인해주세요
             </p>
-            <div className="flex justify-end space-x-4">
+            <div
+              className="flex-shrink-0 self-stretch justify-end flex flex-row items-center gap-x-[4px] gap-y-0 pl-0 pr-0 py-[4px]">
               <button
                 onClick={closeModal}
-                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md"
+                className="flex-shrink-0 rounded-[4px] flex flex-col justify-center px-[8px] py-[4px] bg-[#E5E5EA]"
               >
-                확인
+                <span
+                  className="flex-shrink-0 text-[#444444] whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center">다시 시도하기</span>
+              </button>
+              <button
+                onClick={closeModal}
+                className="flex-shrink-0 rounded-[4px] flex flex-col justify-end items-end px-[8px] py-[4px] bg-[#1E1E1E]"
+              >
+                <span
+                  className="flex-shrink-0 text-[#FFFFFF] whitespace-nowrap text-[8px] leading-[11px] font-semibold flex items-center">이야기만 등록하기</span>
               </button>
             </div>
           </div>
