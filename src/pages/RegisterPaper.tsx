@@ -100,7 +100,7 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
       {modalType === ModalType.TryToExit && (
         <div className="fixed inset-0 flex justify-center items-center bg-white bg-opacity-50 px-[64px]">
           <div
-            className=" rounded-[8px] w-[262px] h-[106px] flex flex-col gap-y-[12px] gap-x-[12px] p-[16px] overflow-hidden bg-[#FFFFFF] border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
+            className="rounded-[8px] w-[262px] h-[106px] flex flex-col gap-y-[12px] gap-x-[12px] p-[16px] overflow-hidden bg-[#FFFFFF] border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
             <h2
               className="flex-shrink-0 text-[#3D3D3D] whitespace-nowrap text-[12px] leading-[16px] font-semibold flex items-center">이야기가
               저장되지 않습니다</h2>
