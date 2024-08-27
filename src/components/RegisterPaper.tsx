@@ -33,7 +33,7 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
   const location = useLocation();
   const initialLink = location.state?.link || '';
 
-  const [url, setUrl] = useState(initialLink);
+  const [url, setUrl] = useState<string>(initialLink);
   const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Idle);
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
