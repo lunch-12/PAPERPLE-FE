@@ -245,9 +245,9 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
           {/* URL Textfield */}
           <div className="flex-shrink-0 self-stretch flex flex-col justify-center items-start gap-y-[8px] gap-x-[8px] overflow-hidden">
             <div className="flex-shrink-0 flex flex-row justify-between items-center w-full">
-              <span className="text-subtitle whitespace-nowrap text-[14px] leading-[19px] font-semibold">
+              <h1 className="text-subtitle whitespace-nowrap text-[14px] leading-[19px] font-semibold">
                 뉴스 URL
-              </span>
+              </h1>
               {/* URL 상태 메시지 */}
               <div className="flex-shrink-0 flex flex-row justify-center items-center gap-y-0 px-0 py-[3px] overflow-hidden">
                 {urlStatus === UrlStatus.Loading && (
@@ -324,10 +324,10 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
           {/* Text Textfield */}
           <div
             className="flex-shrink-0 self-stretch flex flex-col justify-center items-start gap-y-[8px] gap-x-[8px] overflow-hidden">
-            <div
+            <h1
               className="w-full flex-shrink-0 text-subtitle whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">
               이야기 <span className="text-system-red">*</span>
-            </div>
+            </h1>
             <div
               className="flex-shrink-0 self-stretch rounded-[4px] flex flex-col justify-center items-start px-[8px] py-[4px] overflow-hidden border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
               <textarea
@@ -343,9 +343,9 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
           {/* Tag Textfield */}
           <div
             className="flex-shrink-0 self-stretch flex flex-col justify-center gap-y-[8px] gap-x-[8px] overflow-hidden">
-            <div
+            <h1
               className="flex-shrink-0 text-subtitle whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">태그
-            </div>
+            </h1>
             <div
               className="flex-shrink-0 self-stretch rounded-[4px] flex flex-col justify-center px-[8px] py-[4px] overflow-hidden border-[1px] border-[solid] border-[rgba(0,0,0,0.12)]">
               <input
