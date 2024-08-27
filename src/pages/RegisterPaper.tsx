@@ -70,17 +70,17 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
 
     if (isEditing) {
       // 수정 API 호출
-      console.log('수정 중:', { url, content, tags: tagList });
+      console.debug('수정 중:', { url, content, tags: tagList });
       // updatePaper({ url, content, tags: tagList });
     } else {
       // 등록 API 호출
-      console.log('등록 중:', { url, content, tags: tagList });
+      console.debug('등록 중:', { url, content, tags: tagList });
       // createPaper({ url, content, tags: tagList });
     }
 
-    console.log('URL:', url);
-    console.log('Content:', content);
-    console.log('Tags:', tagList);
+    console.debug('URL:', url);
+    console.debug('Content:', content);
+    console.debug('Tags:', tagList);
   };
 
   const closeModal = () => {
