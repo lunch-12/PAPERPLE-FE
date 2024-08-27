@@ -1,14 +1,12 @@
 import React from 'react';
 import { UrlStatus } from '../types/enums';
 
-
-
 interface URLStatusIndicatorProps {
   urlStatus: UrlStatus;
 }
 
 // 이름이 생각이 안나서 chatgpt의 도움을 받았는데 괜찮은 이름 있을까요?
-const URLStatusIndicator= ({ urlStatus }: URLStatusIndicatorProps) => {
+const URLStatusIndicator = ({ urlStatus }: URLStatusIndicatorProps) => {
   return (
     <div className="flex-shrink-0 flex flex-row justify-center items-center gap-y-0 px-0 py-[3px] overflow-hidden">
       {urlStatus === UrlStatus.Loading && (
