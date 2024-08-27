@@ -35,8 +35,8 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
 
   const [url, setUrl] = useState<string>(initialLink);
   const [urlStatus, setUrlStatus] = useState<UrlStatus>(UrlStatus.Idle);
-  const [content, setContent] = useState('');
-  const [tags, setTags] = useState('');
+  const [content, setContent] = useState<string>('');
+  const [tags, setTags] = useState<string>('');
   const [tagList, setTagList] = useState<string[]>([]);
   const [modalType, setModalType] = useState<ModalType>(
     ModalType.None,
