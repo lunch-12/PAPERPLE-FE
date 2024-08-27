@@ -21,7 +21,7 @@ const NewsFooter = ({
   const navigate = useNavigate();
 
   const handleWriteClick = () => {
-    navigate('/register-paper', { state: { link } });
+    navigate('./pages/RegisterPaper', { state: { link } });
   };
 
   return (
