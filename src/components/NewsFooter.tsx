@@ -3,7 +3,6 @@ import { ReactComponent as FavoriteIcon } from '../assets/svg/FavoriteIcon.svg';
 import { ReactComponent as ShareIcon } from '../assets/svg/ShareIcon.svg';
 import { ReactComponent as OpenInBrowserIcon } from '../assets/svg/OpenInBrowserIcon.svg';
 
-
 interface NewsFooterProps {
   tags: string[];
   publishedAt: string;
