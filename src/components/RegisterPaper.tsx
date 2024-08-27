@@ -53,7 +53,6 @@ const RegisterPaper = ({ isEditing = false, existingPaper = null }: RegisterPape
   }, [isEditing, existingPaper]);
 
   const handleSubmit = () => {
-    console.log(urlStatus);
     if (urlStatus === UrlStatus.Loading) {
       setModalType(ModalType.Loading);
       return;
