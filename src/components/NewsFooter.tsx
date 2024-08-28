@@ -47,7 +47,10 @@ const NewsFooter = ({
             <FavoriteIcon width={16} height={16} />
             <p className="text-[14px]">{likeNum}</p>
           </div>
-          <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]" onClick={handleWriteClick}>
+          <button
+            className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]"
+            onClick={handleWriteClick}
+          >
             write
           </button>
           <OpenInBrowserIcon width={22} height={22} />
