@@ -7,40 +7,45 @@ interface URLStatusIndicatorProps {
 
 const URLStatusIndicator = ({ urlStatus }: URLStatusIndicatorProps) => {
   const getStatusProps = (status: UrlStatus) => {
-    const baseContainerStyles =  'flex-shrink-0 flex flex-row justify-end items-end';
+    const baseContainerStyles =
+      'flex-shrink-0 flex flex-row justify-end items-end';
 
     switch (status) {
       case UrlStatus.Loading:
         return {
-          imgSrc: "https://image-resource.creatie.ai/135366163293663/135366179022307/f35ed7a9d768ed64c3166075fb683bbe.png",
-          imgAlt: "Loading icon",
-          text: "정보를 가져오는 중입니다",
-          textColor: "text-system-disabled",
-          containerStyles: baseContainerStyles
+          imgSrc:
+            'https://image-resource.creatie.ai/135366163293663/135366179022307/f35ed7a9d768ed64c3166075fb683bbe.png',
+          imgAlt: 'Loading icon',
+          text: '정보를 가져오는 중입니다',
+          textColor: 'text-system-disabled',
+          containerStyles: baseContainerStyles,
         };
       case UrlStatus.Valid:
         return {
-          imgSrc: "https://image-resource.creatie.ai/135366163293663/135366179022307/f35ed7a9d768ed64c3166075fb683bbe.png",
-          imgAlt: "Valid URL icon",
-          text: "유효한 URL입니다",
-          textColor: "text-main-4",
-          containerStyles: baseContainerStyles
+          imgSrc:
+            'https://image-resource.creatie.ai/135366163293663/135366179022307/f35ed7a9d768ed64c3166075fb683bbe.png',
+          imgAlt: 'Valid URL icon',
+          text: '유효한 URL입니다',
+          textColor: 'text-main-4',
+          containerStyles: baseContainerStyles,
         };
       case UrlStatus.Invalid:
         return {
-          imgSrc: "https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png",
-          imgAlt: "Invalid URL icon",
-          text: "URL을 다시 한번 확인해주세요",
-          textColor: "text-system-error",
-          containerStyles: `${baseContainerStyles} overflow-hidden py-[3px]`
+          imgSrc:
+            'https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png',
+          imgAlt: 'Invalid URL icon',
+          text: 'URL을 다시 한번 확인해주세요',
+          textColor: 'text-system-error',
+          containerStyles: `${baseContainerStyles} overflow-hidden py-[3px]`,
         };
       case UrlStatus.Unavailable:
         return {
-          imgSrc: "https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png",
-          imgAlt: "Unavailable platform icon",
-          text: "해당 플랫폼은 정보를 가져올 수 없습니다",
-          textColor: "text-system-error",
-          containerStyles: `${baseContainerStyles} overflow-hidden py-[3px]`
+          imgSrc:
+            'https://image-resource.creatie.ai/135366163293663/135366179022307/722dc7a1c85a7cd79886c0522a954a38.png',
+          imgAlt: 'Unavailable platform icon',
+          text: '해당 플랫폼은 정보를 가져올 수 없습니다',
+          textColor: 'text-system-error',
+          containerStyles: `${baseContainerStyles} overflow-hidden py-[3px]`,
         };
       default:
         return null;
