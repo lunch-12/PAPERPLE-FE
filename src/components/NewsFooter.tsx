@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { ReactComponent as FavoriteIcon } from '../assets/svg/FavoriteIcon.svg';
 import { ReactComponent as ShareIcon } from '../assets/svg/ShareIcon.svg';
 import { ReactComponent as OpenInBrowserIcon } from '../assets/svg/OpenInBrowserIcon.svg';
@@ -7,6 +8,7 @@ interface NewsFooterProps {
   publishedAt: string;
   createdAt: string;
   likeNum: number;
+  link: string;
 }
 
 const NewsFooter = ({
@@ -14,7 +16,14 @@ const NewsFooter = ({
   publishedAt,
   likeNum,
   createdAt,
+  link,
 }: NewsFooterProps) => {
+  const navigate = useNavigate();
+
+  const handleWriteClick = () => {
+    navigate('./pages/RegisterPaper', { state: { link } });
+  };
+
   return (
     <div className="flex flex-col mt-[16px]">
       <ul className="flex items-center">
@@ -38,7 +47,7 @@ const NewsFooter = ({
             <FavoriteIcon width={16} height={16} />
             <p className="text-[14px]">{likeNum}</p>
           </div>
-          <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]">
+          <button className="text-[10px] px-[6px] py-[2px] text-teritary-title border border-teritary-title rounded-[8px]" onClick={handleWriteClick}>
             write
           </button>
           <OpenInBrowserIcon width={22} height={22} />
