@@ -39,6 +39,7 @@ const NewsItem = ({
         publishedAt={publishedAt}
         createdAt={createdAt}
         likeNum={likeNum}
+        link={link}
       />
     </div>
   );
