@@ -5,7 +5,7 @@ import { Tab } from '../types/enums';
 import PaperList from '../components/PaperList';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const HomePage = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.News);
   const navigate = useNavigate();
 
@@ -38,4 +38,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
