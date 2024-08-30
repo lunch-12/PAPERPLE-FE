@@ -4,6 +4,7 @@ import { ReactComponent as LogoIcon } from '../assets/svg/LogoIcon.svg';
 import useAuthStore from '../stores/useAuthStore';
 import axios from 'axios';
 import { UserDTO } from '../types/dto/user/UserDTO';
+import { API_BASE_URL } from '../config';
 
 const LoginModal = () => {
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
@@ -12,7 +13,7 @@ const LoginModal = () => {
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/user', {
+        const response = await axios.get(`${API_BASE_URL}/user`, {
           withCredentials: true,
         });
 
@@ -37,7 +38,7 @@ const LoginModal = () => {
 
   const handleLogin = async () => {
     try {
-      window.location.href = 'http://localhost:8080/oauth2/authorization/kakao';
+      window.location.href = `${API_BASE_URL}/oauth2/authorization/kakao`;
     } catch (error) {
       console.error('로그인 실패:', error);
     }
