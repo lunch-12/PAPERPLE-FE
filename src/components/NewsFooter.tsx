@@ -2,21 +2,22 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as FavoriteIcon } from '../assets/svg/FavoriteIcon.svg';
 import { ReactComponent as ShareIcon } from '../assets/svg/ShareIcon.svg';
 import { ReactComponent as OpenInBrowserIcon } from '../assets/svg/OpenInBrowserIcon.svg';
+import { openLinkInNewBrowser } from '../utils/browserUtils';
 
 interface NewsFooterProps {
   tags: string[];
+  link: string;
   publishedAt: string;
   createdAt: string;
   likeNum: number;
-  link: string;
 }
 
 const NewsFooter = ({
   tags,
+  link,
   publishedAt,
   likeNum,
   createdAt,
-  link,
 }: NewsFooterProps) => {
   const navigate = useNavigate();
 
@@ -53,7 +54,9 @@ const NewsFooter = ({
           >
             write
           </button>
-          <OpenInBrowserIcon width={22} height={22} />
+          <button onClick={() => openLinkInNewBrowser(link)}>
+            <OpenInBrowserIcon width={22} height={22} />
+          </button>
           <ShareIcon width={22} height={22} />
         </div>
       </div>
