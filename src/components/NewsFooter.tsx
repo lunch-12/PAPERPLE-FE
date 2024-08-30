@@ -10,7 +10,6 @@ interface NewsFooterProps {
   publishedAt: string;
   createdAt: string;
   likeNum: number;
-  link: string;
 }
 
 const NewsFooter = ({
@@ -19,7 +18,6 @@ const NewsFooter = ({
   publishedAt,
   likeNum,
   createdAt,
-  link,
 }: NewsFooterProps) => {
   const navigate = useNavigate();
 
