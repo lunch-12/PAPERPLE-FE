@@ -1,3 +1,5 @@
+import { openLinkInNewBrowser } from '../utils/browserUtils';
+
 interface NewsContentProps {
   title: string;
   link: string;
@@ -5,10 +7,6 @@ interface NewsContentProps {
 }
 
 const NewsContent = ({ title, link, summaries }: NewsContentProps) => {
-  const openLinkInNewBrowser = (link: string) => {
-    window.open(link, '_blank');
-  };
-
   return (
     <article>
       <button

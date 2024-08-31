@@ -5,11 +5,13 @@ import { Tab } from '../types/enums';
 import PaperList from '../components/PaperList';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const HomePage = () => {
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.News);
   const navigate = useNavigate();
 
   const handlePaperRegisterClick = () => {
+    // 페이퍼 등록하기 버튼 클릭 시 실행할 동작을 여기에 추가하세요.
+    console.debug('페이퍼 등록하기 버튼이 클릭되었습니다.');
     navigate('/register-paper');
   };
 
@@ -36,4 +38,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
