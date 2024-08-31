@@ -10,8 +10,6 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handlePaperRegisterClick = () => {
-    // 페이퍼 등록하기 버튼 클릭 시 실행할 동작을 여기에 추가하세요.
-    console.debug('페이퍼 등록하기 버튼이 클릭되었습니다.');
     navigate('/register-paper');
   };
 
