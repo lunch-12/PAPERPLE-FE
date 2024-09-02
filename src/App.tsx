@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import setScreenHeight from './utils/setScreenHeight';
 import 'pretendard/dist/web/static/pretendard.css';
 import LoginModal from './components/LoginModal';
+import BottomTab from './components/BottomTab';
 
 function App() {
   useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm mx-auto h-real-screen">
+    <div className="w-full max-w-sm mx-auto h-real-screen relative">
       <BrowserRouter>
         <Header />
         <LoginModal />
@@ -29,6 +30,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/register-paper" element={<RegisterPaper />} />
         </Routes>
+        <BottomTab />
       </BrowserRouter>
     </div>
   );
