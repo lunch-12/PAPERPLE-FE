@@ -7,7 +7,7 @@ import Search from '../components/Search';
 import { Tab } from '../types/enums';
 
 const SearchPage = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<{
     papers: any[];
     news: any[];
