@@ -15,7 +15,11 @@ const Header = () => {
     <header className="w-full h-[64px] px-[24px] bg-system-white flex items-center justify-between">
       <LogoIcon width={88} height={21} fill="#1E1E1E" />
       <div className="flex items-center justify-center space-x-1">
-        <SearchIcon width={28} className="cursor-pointer" onClick={handleSearchIconClick} />
+        <SearchIcon
+          width={28}
+          className="cursor-pointer"
+          onClick={handleSearchIconClick}
+        />
         <NotificationIcon width={28} />
         <SettingIcon width={28} />
       </div>
