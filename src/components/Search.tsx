@@ -26,10 +26,10 @@ const Search = ({ searchQuery, setSearchQuery, onBackClick }: SearchProps) => {
           value={searchQuery}
           onChange={e => {
             setSearchQuery(e.target.value);
-            console.log('Input changed:', e.target.value);
+            console.debug('Input changed:', e.target.value);
           }}
           placeholder="검색어를 입력해주세요"
-          className="flex-grow text-[#1E1E1E] text-[14px] leading-[24px] font-normal flex items-center justify-between text-justify bg-system-gray-5"
+          className="flex-grow text-system-black text-[14px] leading-[24px] font-normal flex items-center justify-between text-justify bg-system-gray-5"
         />
       </div>
     </div>
