@@ -17,7 +17,7 @@ const SearchPage = () => {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(`Search for: ${searchQuery}`);
+    console.debug(`Search for: ${searchQuery}`);
     const results = performSearch(searchQuery);
     setSearchResults(results);
   };
