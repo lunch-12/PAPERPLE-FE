@@ -5,12 +5,14 @@ import NewsList from '../components/NewsList';
 import ContentsTab from '../components/ContentsTab';
 import Search from '../components/Search';
 import { Tab } from '../types/enums';
+import { PaperDTO } from '../types/dto/paper/PaperDTO';
+import { NewspaperDTO } from '../types/dto/paper/NewspaperDTO';
 
 const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchResults, setSearchResults] = useState<{
-    papers: any[];
-    news: any[];
+    papers: PaperDTO[];
+    news: NewspaperDTO[];
   } | null>(null);
   const [selectedTab, setSelectedTab] = useState<Tab>(Tab.News);
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ const SearchPage = () => {
             'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
           content: `Paper content related to "${query}"`,
           view: 0,
+          image: null,
           createdAt: '2023년 12월 28일',
           isEdited: true,
           likeNum: 17,
