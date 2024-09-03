@@ -2,6 +2,7 @@ import { ReactComponent as DefaultProfileImage } from '../assets/svg/DefaultProf
 import { ReactComponent as MyPaperIcon } from '../assets/svg/MyPaperIcon.svg';
 import { ReactComponent as EditProfileIcon } from '../assets/svg/EditProfileIcon.svg';
 import { ReactComponent as LogoutIcon } from '../assets/svg/LogoutIcon.svg';
+import { ReactComponent as RightArrowIcon } from '../assets/svg/RightArrowIcon.svg';
 
 const UserPage = () => {
   return (
@@ -13,14 +14,19 @@ const UserPage = () => {
         </button>
       </div>
       <ul className="w-full px-[20px] py-[10px] text-title">
-        <button className="flex items-center">
-          <MyPaperIcon />
-          <p className="ml-[10px]">내 페이퍼</p>
+        <button className="w-full flex items-center justify-between">
+          <div className="flex items-center">
+            <MyPaperIcon />
+            <p className="ml-[10px]">내 페이퍼</p>
+          </div>
+          <RightArrowIcon />
         </button>
-        <button className="flex items-center mt-[16px]">
-          <EditProfileIcon />
-
-          <p className="ml-[10px]">프로필 수정</p>
+        <button className="w-full flex items-center justify-between mt-[16px]">
+          <div className="flex items-center">
+            <EditProfileIcon />
+            <p className="ml-[10px]">프로필 수정</p>
+          </div>
+          <RightArrowIcon />
         </button>
         <button className="flex items-center mt-[16px]">
           <LogoutIcon />
