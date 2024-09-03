@@ -1,31 +1,34 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import HomePageIcon from '../assets/png/HomePageIcon.png';
-import RegisterPaperIcon from '../assets/png/RegisterPaperIcon.png';
-import FavoriteIcon from '../assets/png/FavoriteIcon.png';
-import UserPageIcon from '../assets/png/UserPageIcon.png';
+import { ReactComponent as HomePageIcon } from '../assets/svg/HomePageIcon.svg';
+import { ReactComponent as RegisterPaperIcon } from '../assets/svg/RegisterPaperIcon.svg';
+import { ReactComponent as FavoriteIcon } from '../assets/svg/FavoriteIcon.svg';
+import { ReactComponent as UserPageIcon } from '../assets/svg/UserPageIcon.svg';
 
 interface TabIconProps {
   path: string;
-  src: string;
+  icon: React.FC<React.SVGProps<SVGSVGElement>>;
   alt: string;
   isSelected: boolean;
 }
-const TabIcon = ({ path, src, alt, isSelected }: TabIconProps) => {
+
+const TabIcon = ({ path, icon: Icon, alt, isSelected }: TabIconProps) => {
   const navigate = useNavigate();
 
   return (
     <div
       onClick={() => navigate(path)}
-      className={`cursor-pointer w-[39px] h-[39px] flex items-center justify-center ${isSelected ? 'bg-white rounded-full' : ''}`}
+      className={`cursor-pointer w-[39px] h-[39px] flex items-center justify-center ${
+        isSelected ? 'bg-white rounded-full' : ''
+      }`}
+      aria-label={alt}
     >
-      <img
-        src={src}
-        alt={alt}
-        className="w-[23px]"
+      <Icon
+        fill="white"
+        className="w-[23px] h-[23px]"
         style={{
           filter: isSelected
             ? 'invert(54%) sepia(9%) saturate(3563%) hue-rotate(211deg) brightness(78%) contrast(88%)'
-            : 'invert(100%) brightness(0%)',
+            : '',
         }}
       />
     </div>
@@ -37,22 +40,22 @@ const BottomTab = () => {
   const tabs = [
     {
       path: '/',
-      src: HomePageIcon,
+      icon: HomePageIcon,
       alt: 'Navigation Icon to Home Page',
     },
     {
       path: '/register-paper',
-      src: RegisterPaperIcon,
+      icon: RegisterPaperIcon,
       alt: 'Navigation Icon to Register Paper Page',
     },
     {
-      path: '/favorite', // TO DO - 좋아요 페이지 path 추가
-      src: FavoriteIcon,
+      path: '/favorite',
+      icon: FavoriteIcon,
       alt: 'Navigation Icon to Favorite Page',
     },
     {
       path: '/user',
-      src: UserPageIcon,
+      icon: UserPageIcon,
       alt: 'Navigation Icon to User Page',
     },
   ];
@@ -63,7 +66,7 @@ const BottomTab = () => {
         <TabIcon
           key={tab.path}
           path={tab.path}
-          src={tab.src}
+          icon={tab.icon}
           alt={tab.alt}
           isSelected={location.pathname === tab.path}
         />
