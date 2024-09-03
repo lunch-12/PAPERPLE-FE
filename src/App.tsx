@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import setScreenHeight from './utils/setScreenHeight';
 import 'pretendard/dist/web/static/pretendard.css';
 import LoginModal from './components/LoginModal';
+import UserPage from './pages/UserPage';
 import BottomTab from './components/BottomTab';
 
 function App() {
@@ -25,11 +26,14 @@ function App() {
       <BrowserRouter>
         <Header />
         <LoginModal />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/register-paper" element={<RegisterPaper />} />
-        </Routes>
+        <div className="pb-[60px]">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/register-paper" element={<RegisterPaper />} />
+            <Route path="/user" element={<UserPage />} />
+          </Routes>
+        </div>
         <BottomTab />
       </BrowserRouter>
     </div>
