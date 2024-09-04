@@ -4,9 +4,11 @@ import { ReactComponent as EditProfileIcon } from '../assets/svg/EditProfileIcon
 import { ReactComponent as LogoutIcon } from '../assets/svg/LogoutIcon.svg';
 import { ReactComponent as RightArrowIcon } from '../assets/svg/RightArrowIcon.svg';
 import useAuthStore from '../stores/useAuthStore';
+import { useNavigate } from 'react-router-dom';
 
 const UserPage = () => {
   const { isLoggedIn, nickname, profileImage, logout } = useAuthStore();
+  const navigate = useNavigate();
 
   return (
     <div className="w-full text-[14px]">
@@ -35,7 +37,10 @@ const UserPage = () => {
           </div>
           <RightArrowIcon />
         </button>
-        <button className="w-full flex items-center justify-between mt-[16px]">
+        <button
+          className="w-full flex items-center justify-between mt-[16px]"
+          onClick={() => navigate('/edit-profile')}
+        >
           <div className="flex items-center">
             <EditProfileIcon />
             <p className="ml-[10px]">프로필 수정</p>

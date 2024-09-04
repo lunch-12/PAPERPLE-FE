@@ -10,6 +10,7 @@ import 'pretendard/dist/web/static/pretendard.css';
 import LoginModal from './components/LoginModal';
 import UserPage from './pages/UserPage';
 import BottomTab from './components/BottomTab';
+import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
   useEffect(() => {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/register-paper" element={<RegisterPaper />} />
             <Route path="/user" element={<UserPage />} />
+            <Route path="/edit-profile" element={<EditProfilePage />} />
           </Routes>
         </div>
         <BottomTab />
