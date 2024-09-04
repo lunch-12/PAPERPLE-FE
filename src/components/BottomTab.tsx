@@ -57,6 +57,8 @@ const BottomTab = () => {
       path: '/user',
       icon: UserPageIcon,
       alt: 'Navigation Icon to User Page',
+      isSelected:
+        location.pathname === '/user' || location.pathname === '/edit-profile',
     },
   ];
 
@@ -68,7 +70,7 @@ const BottomTab = () => {
           path={tab.path}
           icon={tab.icon}
           alt={tab.alt}
-          isSelected={location.pathname === tab.path}
+          isSelected={tab.isSelected || location.pathname === tab.path}
         />
       ))}
     </nav>
