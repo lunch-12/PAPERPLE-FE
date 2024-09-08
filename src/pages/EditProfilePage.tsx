@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as BackArrowIcon } from '../assets/svg/BackArrowIcon.svg';
 import { ReactComponent as PhotoLibraryIcon } from '../assets/svg/PhotoLibraryIcon.svg';
+import { ReactComponent as ErrorIcon } from '../assets/svg/ErrorIcon.svg';
 import useAuthStore from '../stores/useAuthStore';
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
@@ -12,6 +13,8 @@ import { UserDTO } from '../types/dto/user/UserDTO';
 const EditProfilePage = () => {
   const { nickname, profileImage, login } = useAuthStore();
   const [newNickname, setNewNickname] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   const navigate = useNavigate();
 
   const [imageUrl, setImageUrl] = useState<string>('');
@@ -19,6 +22,8 @@ const EditProfilePage = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isWebcamOpen, setIsWebcamOpen] = useState<boolean>(false);
+  const [isNicknameValid, setIsNicknameValid] = useState<boolean>(true); // 닉네임 유효성 상태
+
   const webcamRef = useRef<Webcam>(null);
   const dropdownRef = useRef<HTMLUListElement>(null);
 
@@ -58,7 +63,6 @@ const EditProfilePage = () => {
   }, [isDropdownOpen]);
 
   const changeProfileImage = async () => {
-    // TO DO - 이미지 업데이트 로직 추가
     if (imageUrl == profileImage || imageFile == null) return;
 
     try {
@@ -122,6 +126,36 @@ const EditProfilePage = () => {
     setImageFile(null); // 파일 초기화
   };
 
+  const validateNickname = (nickname: string): string => {
+    console.log('validateNickname: ', nickname);
+
+    if (nickname.length < 1) {
+      return '글자는 최소 1자 이상이어야 합니다';
+    }
+    if (nickname.length > 30) {
+      return '최대 30글자로 설정할 수 있습니다';
+    }
+
+    const nicknameRegex = /^[가-힣ㄱ-ㅎa-zA-Z0-9-_]+$/;
+    if (!nicknameRegex.test(nickname)) {
+      return "한글, 영어, 숫자, '-', '_'만 사용 가능합니다";
+    }
+
+    return '';
+  };
+
+  const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setNewNickname(value);
+    const validationMessage = validateNickname(value); // 유효성 검사 후 에러 메시지 설정
+    setErrorMessage(validationMessage);
+    if (validationMessage != '') {
+      setIsNicknameValid(false);
+    } else {
+      setIsNicknameValid(true);
+    }
+  };
+
   const handleSaveProfile = async () => {
     try {
       await changeNickname();
@@ -134,6 +168,7 @@ const EditProfilePage = () => {
 
       const userInfo: UserDTO = response.data;
       login(userInfo.nickname, userInfo.profileImage);
+      navigate('/user');
     } catch (e) {
       console.error('프로필 정보를 수정하는 중에 오류가 발생했습니다.', e);
     }
@@ -238,17 +273,34 @@ const EditProfilePage = () => {
         <div className="w-full flex flex-col mt-8">
           <p className="font-semibold">닉네임</p>
           <input
-            className="mt-2 border rounded p-3"
+            className={`mt-[8px] border rounded p-[12px] ${
+              isNicknameValid ? '' : 'border-system-error'
+            }`}
             type="text"
             value={newNickname}
-            onChange={e => setNewNickname(e.target.value)}
+            onChange={handleNicknameChange}
           />
+          <div className="flex items-center justify-end h-[20px]">
+            {!isNicknameValid && (
+              <>
+                <ErrorIcon width={14} height={14} />
+                <p className="ml-[2px] text-system-error text-[10px] font-semibold">
+                  {errorMessage}
+                </p>
+              </>
+            )}
+          </div>
         </div>
 
         {/* 프로필 저장 버튼 */}
         <button
-          className="w-full mt-24 bg-indigo-600 opacity-80 text-white h-10 rounded-md font-semibold"
+          className={`w-full mt-24 h-10 rounded-md font-semibold text-white ${
+            isNicknameValid
+              ? 'bg-sub-background-1'
+              : 'bg-system-disabled cursor-not-allowed'
+          }`}
           onClick={handleSaveProfile}
+          disabled={!isNicknameValid}
         >
           수정 완료
         </button>
