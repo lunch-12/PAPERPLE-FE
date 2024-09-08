@@ -6,6 +6,7 @@ import axios from 'axios';
 import { UserDTO } from '../types/dto/user/UserDTO';
 import { API_BASE_URL } from '../config';
 import { ReactComponent as CloseIcon } from '../assets/svg/CloseIcon.svg';
+import { handleKakaoLogin } from '../utils/handleKakaoLogin';
 
 const LoginModal = () => {
   const isLoggedIn = useAuthStore(state => state.isLoggedIn);
@@ -38,14 +39,6 @@ const LoginModal = () => {
     };
   }, [isLoggedIn, isModalOpen, login]);
 
-  const handleLogin = async () => {
-    try {
-      window.location.href = `${API_BASE_URL}/oauth2/authorization/kakao`;
-    } catch (error) {
-      console.error('로그인 실패:', error);
-    }
-  };
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -66,7 +59,7 @@ const LoginModal = () => {
             간편하게 로그인하고
             <br /> 다른 사람들과 이야기를 나눠보세요
           </p>
-          <button className="mt-[40px]" onClick={handleLogin}>
+          <button className="mt-[40px]" onClick={handleKakaoLogin}>
             <img src={KakaoLoginIcon} alt="Kakao Login" />
           </button>
         </div>
