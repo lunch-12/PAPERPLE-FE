@@ -5,10 +5,41 @@ import { ReactComponent as LogoutIcon } from '../assets/svg/LogoutIcon.svg';
 import { ReactComponent as RightArrowIcon } from '../assets/svg/RightArrowIcon.svg';
 import useAuthStore from '../stores/useAuthStore';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import LoginRequiredModal from '../components/LoginRequiredModal';
 
 const UserPage = () => {
   const { isLoggedIn, nickname, profileImage, logout } = useAuthStore();
   const navigate = useNavigate();
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+
+  const handleMyPaperClick = () => {
+    if (isLoggedIn) {
+      navigate('/my-paper');
+    } else {
+      setModalOpen(true);
+    }
+  };
+
+  const handleEditProfileClick = () => {
+    if (isLoggedIn) {
+      navigate('/edit-profile');
+    } else {
+      setModalOpen(true);
+    }
+  };
+
+  const handleLogoutClick = () => {
+    if (isLoggedIn) {
+      logout();
+    } else {
+      setModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <div className="w-full text-[14px]">
@@ -31,7 +62,7 @@ const UserPage = () => {
       </div>
       <ul className="w-full px-[20px] py-[10px] text-title">
         <button className="w-full flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={handleMyPaperClick}>
             <MyPaperIcon />
             <p className="ml-[10px]">내 페이퍼</p>
           </div>
@@ -39,7 +70,7 @@ const UserPage = () => {
         </button>
         <button
           className="w-full flex items-center justify-between mt-[16px]"
-          onClick={() => navigate('/edit-profile')}
+          onClick={handleEditProfileClick}
         >
           <div className="flex items-center">
             <EditProfileIcon />
@@ -49,9 +80,14 @@ const UserPage = () => {
         </button>
         <button className="flex items-center mt-[16px]" onClick={logout}>
           <LogoutIcon />
-          <p className="ml-[10px]">로그아웃</p>
+          <p className="ml-[10px]" onClick={handleLogoutClick}>
+            로그아웃
+          </p>
         </button>
       </ul>
+
+      {/* 모달 컴포넌트 */}
+      <LoginRequiredModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </div>
   );
 };
