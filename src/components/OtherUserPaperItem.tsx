@@ -14,6 +14,7 @@ interface OtherUserPaperItemProps {
   createdAt: string;
   isEdited: boolean;
   newspaper: NewspaperInPaperDTO | null;
+  isLikedByCurrentUser: boolean;
 }
 
 const OtherUserPaperItem = ({
@@ -24,6 +25,7 @@ const OtherUserPaperItem = ({
   createdAt,
   isEdited,
   newspaper,
+  isLikedByCurrentUser,
 }: OtherUserPaperItemProps) => {
   const { isLoggedIn, nickname: authNickname } = useAuthStore();
 
@@ -43,6 +45,7 @@ const OtherUserPaperItem = ({
         paperId={paperId}
         createdAt={createdAt}
         isEdited={isEdited}
+        isLikedByCurrentUser={isLikedByCurrentUser}
       />
     </div>
   );

@@ -9,6 +9,7 @@ export interface UserPaperDTO {
   isEdited: boolean;
   likeNum: number;
   newspaper: NewspaperInPaperDTO | null;
+  isLikedByCurrentUser: boolean;
 }
 
 export interface NewspaperInPaperDTO {

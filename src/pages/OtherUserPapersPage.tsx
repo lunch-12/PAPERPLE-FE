@@ -57,6 +57,7 @@ const OtherUserPapersPage = () => {
                 createdAt={paper.createdAt}
                 isEdited={paper.isEdited}
                 newspaper={paper.newspaper}
+                isLikedByCurrentUser={paper.isLikedByCurrentUser}
               />
             </li>
           ))}
