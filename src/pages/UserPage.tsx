@@ -61,8 +61,11 @@ const UserPage = () => {
         )}
       </div>
       <ul className="w-full px-[20px] py-[10px] text-title">
-        <button className="w-full flex items-center justify-between">
-          <div className="flex items-center" onClick={handleMyPaperClick}>
+        <button
+          className="w-full flex items-center justify-between"
+          onClick={handleMyPaperClick}
+        >
+          <div className="flex items-center">
             <MyPaperIcon />
             <p className="ml-[10px]">내 페이퍼</p>
           </div>
@@ -78,11 +81,12 @@ const UserPage = () => {
           </div>
           <RightArrowIcon />
         </button>
-        <button className="flex items-center mt-[16px]" onClick={logout}>
+        <button
+          className="flex items-center mt-[16px]"
+          onClick={handleLogoutClick}
+        >
           <LogoutIcon />
-          <p className="ml-[10px]" onClick={handleLogoutClick}>
-            로그아웃
-          </p>
+          <p className="ml-[10px]">로그아웃</p>
         </button>
       </ul>
 
