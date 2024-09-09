@@ -4,6 +4,7 @@ import PaperContent from './PaperContent';
 import PaperHeader from './PaperHeader';
 
 interface MyPaperItemProps {
+  paperId: number;
   nickname: string;
   profileImage: string;
   content: string;
@@ -13,6 +14,7 @@ interface MyPaperItemProps {
 }
 
 const MyPaperItem = ({
+  paperId,
   nickname,
   profileImage,
   content,
@@ -24,7 +26,11 @@ const MyPaperItem = ({
     <div className="w-full px-4">
       <PaperHeader nickname={nickname} profileImage={profileImage} />
       <PaperContent content={content} newspaper={newspaper} />
-      <MyPaperFooter createdAt={createdAt} isEdited={isEdited} />
+      <MyPaperFooter
+        paperId={paperId}
+        createdAt={createdAt}
+        isEdited={isEdited}
+      />
     </div>
   );
 };

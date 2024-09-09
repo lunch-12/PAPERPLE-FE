@@ -25,8 +25,6 @@ const MyPaperPage = () => {
         });
 
         setPapers(response.data);
-
-        console.log(response.data);
       } catch (error) {
         console.error('Paper 리스트 API 요청 실패:', error);
       }
@@ -51,6 +49,7 @@ const MyPaperPage = () => {
               className={`py-[16px] ${index != papers.length - 1 ? 'border-b' : ''}`}
             >
               <MyPaperItem
+                paperId={paper.paperId}
                 nickname={nickname || ''}
                 profileImage={profileImage || ''}
                 content={paper.content}
