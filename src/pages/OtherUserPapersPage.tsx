@@ -1,37 +1,38 @@
-import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { API_BASE_URL } from '../config';
-import { ReactComponent as BackArrowIcon } from '../assets/svg/BackArrowIcon.svg';
-import { useNavigate } from 'react-router-dom';
 import { UserPaperDTO } from '../types/dto/paper/UserPaperDTO';
-import useAuthStore from '../stores/useAuthStore';
-import MyPaperItem from '../components/MyPaperItem';
+import { ReactComponent as BackArrowIcon } from '../assets/svg/BackArrowIcon.svg';
+import OtherUserPaperItem from '../components/OtherUserPaperItem';
 
-const MyPaperPage = () => {
+const OtherUserPapersPage = () => {
+  const { userId } = useParams<string>();
   const [papers, setPapers] = useState<UserPaperDTO[]>([]);
-  const { nickname, profileImage } = useAuthStore();
 
   const navigate = useNavigate();
 
-  const handleBackArrowClick = () => {
-    navigate('/user');
-  };
-
   useEffect(() => {
-    const fetchPapers = async () => {
+    const fetchUserPapers = async () => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/paper/my-papers`, {
-          withCredentials: true,
-        });
-
+        const response = await axios.get(
+          `${API_BASE_URL}/paper/user/${userId}`,
+          {
+            withCredentials: true,
+          },
+        );
         setPapers(response.data);
       } catch (error) {
-        console.error('Paper 리스트 API 요청 실패:', error);
+        console.error('User Paper API request failed:', error);
       }
     };
 
-    fetchPapers();
-  }, []);
+    fetchUserPapers();
+  }, [userId]);
+
+  const handleBackArrowClick = () => {
+    navigate(-1);
+  };
 
   return (
     <section className="w-full h-full">
@@ -48,10 +49,10 @@ const MyPaperPage = () => {
               key={paper.content}
               className={`py-[16px] ${index != papers.length - 1 ? 'border-b' : ''}`}
             >
-              <MyPaperItem
+              <OtherUserPaperItem
                 paperId={paper.paperId}
-                nickname={nickname || ''}
-                profileImage={profileImage || ''}
+                nickname={paper.nickname}
+                profileImage={paper.profileImage}
                 content={paper.content}
                 createdAt={paper.createdAt}
                 isEdited={paper.isEdited}
@@ -69,4 +70,4 @@ const MyPaperPage = () => {
   );
 };
 
-export default MyPaperPage;
+export default OtherUserPapersPage;
