@@ -21,7 +21,7 @@ const MyPaperItem = ({
   newspaper,
 }: MyPaperItemProps) => {
   return (
-    <div className="w-full">
+    <div className="w-full px-4">
       <PaperHeader nickname={nickname} profileImage={profileImage} />
       <PaperContent content={content} newspaper={newspaper} />
       <MyPaperFooter createdAt={createdAt} isEdited={isEdited} />
