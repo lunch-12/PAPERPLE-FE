@@ -100,11 +100,10 @@ const EditProfilePage = () => {
         },
       );
     } catch (error) {
-      // TO DO - 사용자에게 적절한 에러 메시지 표시 (e.g. 이미 사용 중인 닉네임입니다)
-      console.error(
-        '닉네임을 업데이트하는 과정에서 오류가 발생했습니다.',
-        error,
-      );
+      // TO DO - error 타입에 따라 다른 에러 메세지 표시
+      setErrorMessage('이미 사용 중인 닉네임입니다.');
+      setIsNicknameValid(false);
+      throw new Error('닉네임 중복 오류: 이미 사용 중인 닉네임입니다.');
     }
   };
 
