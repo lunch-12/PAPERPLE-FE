@@ -44,7 +44,6 @@ export const uploadImageToS3 = async (file: File): Promise<string | null> => {
   try {
     const fileName = file.name;
     const presignedUrl = await getPresignedUrl(fileName);
-    console.log('presignedUrl: ', presignedUrl);
     const success = await uploadToS3(presignedUrl, file);
     if (success) {
       return `${AWSBucketDomain}${fileName}`;

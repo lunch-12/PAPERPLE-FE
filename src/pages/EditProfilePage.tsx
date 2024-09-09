@@ -126,8 +126,6 @@ const EditProfilePage = () => {
   };
 
   const validateNickname = (nickname: string): string => {
-    console.log('validateNickname: ', nickname);
-
     if (nickname.length < 1) {
       return '글자는 최소 1자 이상이어야 합니다';
     }
