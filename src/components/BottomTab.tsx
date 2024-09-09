@@ -57,8 +57,9 @@ const BottomTab = () => {
       path: '/user',
       icon: UserPageIcon,
       alt: 'Navigation Icon to User Page',
-      isSelected:
-        location.pathname === '/user' || location.pathname === '/edit-profile',
+      isSelected: ['/user', '/edit-profile', '/my-paper'].includes(
+        location.pathname,
+      ),
     },
   ];
 

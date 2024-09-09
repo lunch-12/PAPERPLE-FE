@@ -11,6 +11,7 @@ import LoginModal from './components/LoginModal';
 import UserPage from './pages/UserPage';
 import BottomTab from './components/BottomTab';
 import EditProfilePage from './pages/EditProfilePage';
+import MyPaperPage from './pages/MyPaperPage';
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
             <Route path="/register-paper" element={<RegisterPaper />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
+            <Route path="/my-paper" element={<MyPaperPage />} />
           </Routes>
         </div>
         <BottomTab />
