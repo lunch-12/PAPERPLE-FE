@@ -8,6 +8,11 @@ import { useEffect } from 'react';
 import setScreenHeight from './utils/setScreenHeight';
 import 'pretendard/dist/web/static/pretendard.css';
 import LoginModal from './components/LoginModal';
+import UserPage from './pages/UserPage';
+import BottomTab from './components/BottomTab';
+import EditProfilePage from './pages/EditProfilePage';
+import MyPaperPage from './pages/MyPaperPage';
+import OtherUserPapersPage from './pages/OtherUserPapersPage';
 
 function App() {
   useEffect(() => {
@@ -20,15 +25,25 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full max-w-sm mx-auto h-real-screen">
+    <div className="w-full max-w-sm mx-auto h-real-screen relative">
       <BrowserRouter>
         <Header />
         <LoginModal />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/register-paper" element={<RegisterPaper />} />
-        </Routes>
+        <div className="pb-[60px]">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/register-paper" element={<RegisterPaper />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/edit-profile" element={<EditProfilePage />} />
+            <Route path="/my-paper" element={<MyPaperPage />} />
+            <Route
+              path="/user/:userId/papers"
+              element={<OtherUserPapersPage />}
+            />
+          </Routes>
+        </div>
+        <BottomTab />
       </BrowserRouter>
     </div>
   );

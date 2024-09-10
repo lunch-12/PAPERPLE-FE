@@ -3,7 +3,7 @@ import StockBanner from './StockBanner';
 interface ContentsTabProps {
   nickname: string;
   profileImage: string;
-  sector: string | undefined;
+  sector?: string | undefined;
 }
 
 const PaperHeader = ({ nickname, profileImage, sector }: ContentsTabProps) => {
