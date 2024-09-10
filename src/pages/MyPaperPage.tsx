@@ -39,7 +39,9 @@ const MyPaperPage = () => {
         <button className="absolute left-4" onClick={handleBackArrowClick}>
           <BackArrowIcon />
         </button>
-        <p className="mx-auto text-center font-semibold1">내 페이퍼</p>
+        <p className="mx-auto text-center font-semibold  text-[14px]">
+          내 페이퍼
+        </p>
       </header>
       {papers.length > 0 ? (
         <ul>

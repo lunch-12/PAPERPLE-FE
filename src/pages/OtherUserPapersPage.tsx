@@ -9,6 +9,7 @@ import OtherUserPaperItem from '../components/OtherUserPaperItem';
 const OtherUserPapersPage = () => {
   const { userId } = useParams<string>();
   const [papers, setPapers] = useState<UserPaperDTO[]>([]);
+  const [nickname, setNickname] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -22,6 +23,11 @@ const OtherUserPapersPage = () => {
           },
         );
         setPapers(response.data);
+
+        if (response.data.length > 0) {
+          // TO DO - 유저 닉네임이 페이퍼가 0개인 경우에도 노출되도록 수정
+          setNickname(response.data[0].nickname);
+        }
       } catch (error) {
         console.error('User Paper API request failed:', error);
       }
@@ -40,7 +46,9 @@ const OtherUserPapersPage = () => {
         <button className="absolute left-4" onClick={handleBackArrowClick}>
           <BackArrowIcon />
         </button>
-        <p className="mx-auto text-center font-semibold1">내 페이퍼</p>
+        <p className="mx-auto text-center font-semibold text-[14px]">
+          {nickname}
+        </p>
       </header>
       {papers.length > 0 ? (
         <ul>
