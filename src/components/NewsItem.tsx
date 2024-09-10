@@ -35,10 +35,10 @@ const NewsItem = ({
       <NewsContent title={title} link={link} summaries={summaries} />
       <NewsFooter
         tags={tags}
+        link={link}
         publishedAt={publishedAt}
         createdAt={createdAt}
         likeNum={likeNum}
-        link={link}
       />
     </div>
   );
