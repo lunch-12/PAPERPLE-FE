@@ -31,26 +31,26 @@ const PaperList = () => {
   if (error) return <p>{error}</p>;
 
   return (
-      <section className="w-full">
-        <ul>
-          {paperData.map((paper, index) => (
-              <li
-                  key={paper.paperId}  // Changed from paper.content to paper.paperId for unique key
-                  className={`py-[16px] ${index !== paperData.length - 1 ? 'border-b' : ''}`}
-              >
-                <PaperItem
-                    nickname={paper.nickname}
-                    profileImage={paper.profileImage}
-                    content={paper.content}
-                    createdAt={paper.createdAt}
-                    isEdited={paper.isEdited}
-                    likeNum={paper.likeNum}
-                    newspaper={paper.newspaper}
-                />
-              </li>
-          ))}
-        </ul>
-      </section>
+    <section className="w-full">
+      <ul>
+        {paperData.map((paper, index) => (
+          <li
+            key={paper.paperId} // Changed from paper.content to paper.paperId for unique key
+            className={`py-[16px] ${index !== paperData.length - 1 ? 'border-b' : ''}`}
+          >
+            <PaperItem
+              nickname={paper.nickname}
+              profileImage={paper.profileImage}
+              content={paper.content}
+              createdAt={paper.createdAt}
+              isEdited={paper.isEdited}
+              likeNum={paper.likeNum}
+              newspaper={paper.newspaper}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 

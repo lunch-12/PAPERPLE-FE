@@ -19,8 +19,7 @@ const HomePage = () => {
       <div className="px-[15px]">
         {selectedTab === Tab.News ? <NewsList /> : <PaperList />}
       </div>
-      <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2">
-      </div>
+      <div className="absolute bottom-[30px] left-1/2 transform -translate-x-1/2"></div>
     </div>
   );
 };
