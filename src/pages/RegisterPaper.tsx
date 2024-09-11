@@ -65,7 +65,7 @@ const RegisterPaper = ({
         // 수정 API 호출
         response = await axios.post(
           `${API_BASE_URL}/paper`,
-          { url, content, tags: tagList },
+          { newspaperLink: url, content, tags: tagList },
           { withCredentials: true },
         );
       } else {
@@ -73,7 +73,7 @@ const RegisterPaper = ({
         console.debug('post');
         response = await axios.post(
           `${API_BASE_URL}/paper`,
-          { url, content, tags: tagList },
+          { newspaperLink: url, content, tags: tagList },
           { withCredentials: true },
         );
       }
