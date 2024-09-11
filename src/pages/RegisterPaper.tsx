@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import URLStatusIndicator from '../components/URLStatusIndicator';
 import { ModalType, UrlStatus } from '../types/enums';
 import Modal from '../components/Modal';
+import axios, { AxiosError } from 'axios';
+import { API_BASE_URL } from '../config';
 
 interface Paper {
   url: string;
@@ -19,6 +21,7 @@ const RegisterPaper = ({
   isEditing = false,
   existingPaper = null,
 }: RegisterPaperProps) => {
+  const navigate = useNavigate();
   const location = useLocation();
   const initialLink = location.state?.link || '';
 
@@ -28,17 +31,19 @@ const RegisterPaper = ({
   const [tags, setTags] = useState<string>('');
   const [tagList, setTagList] = useState<string[]>([]);
   const [modalType, setModalType] = useState<ModalType>(ModalType.None);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     if (isEditing && existingPaper !== null) {
-      // 기존 페이퍼 데이터를 로드
       setUrl(existingPaper.url);
       setContent(existingPaper.content);
       setTagList(existingPaper.tags);
     }
   }, [isEditing, existingPaper]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    console.debug('handleSubmit called');
+
     if (urlStatus === UrlStatus.Loading) {
       setModalType(ModalType.Loading);
       return;
@@ -54,19 +59,42 @@ const RegisterPaper = ({
       return;
     }
 
-    if (isEditing) {
-      // 수정 API 호출
-      console.debug('수정 중:', { url, content, tags: tagList });
-      // updatePaper({ url, content, tags: tagList });
-    } else {
-      // 등록 API 호출
-      console.debug('등록 중:', { url, content, tags: tagList });
-      // createPaper({ url, content, tags: tagList });
-    }
+    try {
+      let response;
+      if (isEditing && existingPaper) {
+        // 수정 API 호출
+        response = await axios.post(
+          `${API_BASE_URL}/paper`,
+          { newspaperLink: url, content, tags: tagList },
+          { withCredentials: true },
+        );
+      } else {
+        // 등록 API 호출
+        console.debug('post');
+        response = await axios.post(
+          `${API_BASE_URL}/paper`,
+          { newspaperLink: url, content, tags: tagList },
+          { withCredentials: true },
+        );
+      }
+      // 서버 응답 상태 코드와 본문 로그 찍기
+      console.debug('응답 상태 코드:', response.status);
+      console.debug('응답 본문:', response.data);
 
-    console.debug('URL:', url);
-    console.debug('Content:', content);
-    console.debug('Tags:', tagList);
+      // 성공 시 처리
+      setModalType(ModalType.None);
+      navigate('/');
+    } catch (error) {
+      console.debug('Catch block entered');
+      if (axios.isAxiosError(error)) {
+        console.debug('응답 상태 코드:', error.response?.status);
+        console.debug('응답 본문:', error.response?.data);
+      } else {
+        // 기타 에러 처리
+        setErrorMessage('예상치 못한 오류가 발생했습니다.');
+      }
+      setModalType(ModalType.Loading);
+    }
   };
 
   const closeModal = () => {
@@ -78,6 +106,10 @@ const RegisterPaper = ({
       setTagList([...tagList, tags.trim()]);
       setTags('');
     }
+  };
+
+  const removeTag = (index: number) => {
+    setTagList(tagList.filter((_, i) => i !== index));
   };
 
   return (
@@ -158,25 +190,30 @@ const RegisterPaper = ({
                   <span className="flex-shrink-0 w-auto h-[16px] text-teritary-title whitespace-nowrap text-[12px] leading-[16px] font-medium">
                     {tag}
                   </span>
-                  <span className="flex-shrink-0 text-placeholder whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center justify-center text-center">
+                  <button
+                    type="button"
+                    onClick={() => removeTag(index)}
+                    className="flex-shrink-0 text-placeholder whitespace-nowrap text-[8px] leading-[11px] font-medium flex items-center justify-center text-center"
+                  >
                     ❌
-                  </span>
+                  </button>
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Post Button */}
-        <div className="flex-shrink-0 self-stretch flex justify-end items-end px-[16px] py-[10px] overflow-hidden">
-          <button
-            onClick={handleSubmit}
-            className="flex-shrink-0 rounded-[12px] flex flex-col justify-center items-end px-[16px] py-[8px] bg-[rgba(191,_69,_136,_0.8)]"
-          >
-            <span className="flex-shrink-0 text-system-white whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">
-              {isEditing ? '수정' : '등록하기'}
-            </span>
-          </button>
+          {/* Submit Button */}
+          <div className="flex-shrink-0 self-stretch flex justify-end items-end px-[16px] py-[10px] overflow-hidden">
+            <button
+              type="button" // This prevents form submission behavior
+              onClick={handleSubmit}
+              className="flex-shrink-0 rounded-[12px] flex flex-col justify-center items-end px-[16px] py-[8px] bg-[rgba(191,_69,_136,_0.8)]"
+            >
+              <span className="flex-shrink-0 text-system-white whitespace-nowrap text-[14px] leading-[19px] font-semibold flex items-center">
+                {isEditing ? '수정' : '등록하기'}
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
