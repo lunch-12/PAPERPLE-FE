@@ -1,151 +1,60 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 import { NewspaperDTO } from '../types/dto/paper/NewspaperDTO';
 import NewsItem from './NewsItem';
+import { API_BASE_URL } from '../config';
 
 const NewsList = () => {
-  // TO DO - api를 통해 data fetch
-  const newsData: NewspaperDTO[] = [
-    {
-      id: 1,
-      isHotArticleBanner: true,
-      title: 'CJ제일제당, 파리 ‘비비고 시장’에서 K푸드로 세계인 홀렸다',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image:
-        'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
-      summaries: [
-        "CJ 제일제당은 파리 올림픽 기간 동안 '비비고 시장' 행사를 통해 K-푸드를 알리며 큰 호응을 얻었다.",
-        "'비비고 시장'에서 매일 500인분의 메뉴가 4시간 만에 품절되었고, 유럽 내 여러 유통채널로의 입점 기회가 확대되었다.",
-        'CJ제일제당은 프랑스를 비롯한 유럽 전역으로 K-푸드 사업을 확장할 계획이다.',
-      ],
-      tags: ['IT/과학', '반도체'],
-      date: '2023년 12월 28일',
-      stockName: '삼성전자',
-      stockCode: '005930',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-    {
-      id: 2,
-      isHotArticleBanner: false,
-      title: 'Another News Title',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image: 'https://example.com/another-image.jpg',
-      summaries: [
-        'Another summary point 1',
-        'Another summary point 2',
-        'Another summary point 3',
-      ],
-      tags: ['경제', '정치'],
-      date: '2023년 12월 29일',
-      stockName: '카카오',
-      stockCode: '035720',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-    {
-      id: 3,
-      isHotArticleBanner: true,
-      title: 'Another News Title',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image: 'https://example.com/another-image.jpg',
-      summaries: [
-        'Another summary point 1',
-        'Another summary point 2',
-        'Another summary point 3',
-      ],
-      tags: ['경제', '정치'],
-      date: '2023년 12월 29일',
-      stockName: '카카오',
-      stockCode: '035720',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-    {
-      id: 4,
-      isHotArticleBanner: true,
-      title: 'CJ제일제당, 파리 ‘비비고 시장’에서 K푸드로 세계인 홀렸다',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image:
-        'https://www.journalist.or.kr/data/photos/20171044/art_1509452169.jpg',
-      summaries: [
-        "CJ 제일제당은 파리 올림픽 기간 동안 '비비고 시장' 행사를 통해 K-푸드를 알리며 큰 호응을 얻었다.",
-        "'비비고 시장'에서 매일 500인분의 메뉴가 4시간 만에 품절되었고, 유럽 내 여러 유통채널로의 입점 기회가 확대되었다.",
-        'CJ제일제당은 프랑스를 비롯한 유럽 전역으로 K-푸드 사업을 확장할 계획이다.',
-      ],
-      tags: ['IT/과학', '반도체'],
-      date: '2023년 12월 28일',
-      stockName: '카카오',
-      stockCode: '035720',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-    {
-      id: 5,
-      isHotArticleBanner: false,
-      title: 'Another News Title',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image: 'https://example.com/another-image.jpg',
-      summaries: [
-        'Another summary point 1',
-        'Another summary point 2',
-        'Another summary point 3',
-      ],
-      tags: ['경제', '정치'],
-      date: '2023년 12월 29일',
-      stockName: '카카오',
-      stockCode: '035720',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-    {
-      id: 6,
-      isHotArticleBanner: true,
-      title: 'Another News Title',
-      link: 'https://www.cj.co.kr/kr/newsroom/pressreleases/news-detail/1604',
-      image: 'https://example.com/another-image.jpg',
-      summaries: [
-        'Another summary point 1',
-        'Another summary point 2',
-        'Another summary point 3',
-      ],
-      tags: ['경제', '정치'],
-      date: '2023년 12월 29일',
-      stockName: '카카오',
-      stockCode: '035720',
-      publishedAt: '중앙일보',
-      createdAt: '2024년 08월 19일',
-      likeNum: 17,
-    },
-  ];
+  const [newsData, setNewsData] = useState<NewspaperDTO[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchNewsData = async () => {
+      try {
+        const response = await axios.get<NewspaperDTO[]>(`${API_BASE_URL}/news-paper`, {
+          withCredentials: true,
+        });
+        setNewsData(response.data);
+      } catch (error) {
+        setError('Failed to fetch news.');
+        console.error('Error fetching news:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNewsData();
+  }, []);
+
+  if (loading) return <div>로딩 중...</div>;
+  if (error) return <div>오류 발생: {error}</div>;
 
   return (
-    <section className="w-full">
-      <ul>
-        {newsData.map((news, index) => (
-          <li
-            key={news.title}
-            className={`py-[16px] ${index != newsData.length - 1 ? 'border-b' : ''}`}
-          >
-            <NewsItem
-              isHotArticleBanner={news.isHotArticleBanner}
-              stockName={news.stockName}
-              stockCode={news.stockCode}
-              title={news.title}
-              link={news.link}
-              summaries={news.summaries}
-              tags={news.tags}
-              publishedAt={news.publishedAt}
-              createdAt={news.createdAt}
-              likeNum={news.likeNum}
-            />
-          </li>
-        ))}
-      </ul>
-    </section>
+      <section className="w-full">
+        <ul>
+          {newsData.map((news, index) => (
+              <li
+                  key={news.id} // id를 키로 사용
+                  className={`py-[16px] ${index !== newsData.length - 1 ? 'border-b' : ''}`}
+              >
+                <NewsItem
+                    isHotArticleBanner={true}
+                    stockName={'삼성전자'}
+                    stockCode={'005930'}
+                    title={news.title}
+                    link={news.link}
+                    summary={news.summary}
+                    image={news.image}
+                    tags={['IT/과학', '반도체']}
+                    publishedAt={news.publishedAt}
+                    createdAt={news.createdAt}
+                    likeNum={0}
+                />
+              </li>
+          ))}
+        </ul>
+      </section>
   );
 };
 

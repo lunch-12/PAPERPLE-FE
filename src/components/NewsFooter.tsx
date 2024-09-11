@@ -12,6 +12,14 @@ interface NewsFooterProps {
   handleWriteClick: () => void;
 }
 
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}년 ${month}월 ${day}일`;
+};
+
 const NewsFooter = ({
   tags,
   link,
@@ -20,6 +28,9 @@ const NewsFooter = ({
   createdAt,
   handleWriteClick,
 }: NewsFooterProps) => {
+  const formattedCreatedAt = formatDate(createdAt);
+  const formattedPublishedAt = formatDate(publishedAt);
+
   return (
     <div className="flex flex-col mt-[16px]">
       <ul className="flex items-center">
@@ -35,8 +46,8 @@ const NewsFooter = ({
       </ul>
       <div className="mt-[4px] flex items-center justify-between">
         <div className="text-[#4C4C57] text-[12px] flex items-center justify-center">
-          <p>{publishedAt},</p>
-          <p className="ml-[4px]">{createdAt}</p>
+          <p>{formattedPublishedAt},</p>
+          <p className="ml-[4px]">{formattedCreatedAt}</p>
         </div>
         <div className="flex items-center justify-center gap-[8px]">
           <div className="flex items-center justify-center gap-[2px]">
