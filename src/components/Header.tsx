@@ -4,6 +4,8 @@ import { ReactComponent as LogoIcon } from '../assets/svg/LogoIcon.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuthStore from '../stores/useAuthStore';
 import { handleKakaoLogin } from '../utils/handleKakaoLogin';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const Header = () => {
   const { isLoggedIn } = useAuthStore();
@@ -19,11 +21,22 @@ const Header = () => {
     navigate('/search');
   };
 
+  const handlePostTest = async () => {
+    try {
+      await axios.post(`${API_BASE_URL}/paper/test`, {
+        url: '',
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <header className="w-full h-[64px] px-[24px] bg-system-white flex items-center justify-between">
       <button onClick={handleLogoClick}>
         <LogoIcon width={88} height={21} fill="#1E1E1E" />
       </button>
+      <button onClick={handlePostTest}>post test</button>
       <div className="flex items-center justify-center space-x-1">
         {location.pathname === '/' && (
           <SearchIcon
