@@ -24,7 +24,6 @@ const PaperContent = ({ content, newspaper }: PaperContentProps) => {
             <NewsItem
               isShowHeader={false}
               isHotArticleBanner={false}
-              sector={newspaper.sector}
               title={newspaper.title}
               link={newspaper.link}
               summaries={newspaper.summaries}
@@ -32,6 +31,8 @@ const PaperContent = ({ content, newspaper }: PaperContentProps) => {
               publishedAt={newspaper.publishedAt}
               createdAt={newspaper.createdAt}
               likeNum={newspaper.likeNum}
+              stockName={newspaper.stockName}
+              stockCode={newspaper.stockCode}
             />
           ) : (
             <article>

@@ -1,11 +1,16 @@
 import StockBanner from './StockBanner';
 
-interface ContentsTabProps {
+interface NewsHeaderProps {
   isHotArticleBanner: boolean;
-  sector: string;
+  stockName: string;
+  stockCode: string;
 }
 
-const NewsHeader = ({ isHotArticleBanner, sector }: ContentsTabProps) => {
+const NewsHeader = ({
+  isHotArticleBanner,
+  stockName,
+  stockCode,
+}: NewsHeaderProps) => {
   return (
     <div className="w-full flex items-center justify-between mb-[16px]">
       {isHotArticleBanner && (
@@ -14,7 +19,7 @@ const NewsHeader = ({ isHotArticleBanner, sector }: ContentsTabProps) => {
         </p>
       )}
       <div className={`ml-auto ${isHotArticleBanner ? 'ml-[8px]' : ''}`}>
-        <StockBanner sector={sector} />
+        <StockBanner stockName={stockName} stockCode={stockCode} />
       </div>
     </div>
   );

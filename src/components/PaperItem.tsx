@@ -25,11 +25,7 @@ const PaperItem = ({
 }: PaperItemProps) => {
   return (
     <div className="w-full">
-      <PaperHeader
-        nickname={nickname}
-        profileImage={profileImage}
-        sector={newspaper?.sector}
-      />
+      <PaperHeader nickname={nickname} profileImage={profileImage} />
       <PaperContent content={content} newspaper={newspaper} />
       <PaperFooter
         createdAt={createdAt}

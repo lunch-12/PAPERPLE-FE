@@ -52,6 +52,8 @@ const SearchPage = () => {
           tags: ['Tag1', 'Tag2'],
           date: '2024-01-01',
           sector: 'News Sector',
+          stockName: '카카오',
+          stockCode: '035720',
           publishedAt: 'Published At',
           createdAt: '2024-01-01',
           likeNum: 8,

@@ -19,8 +19,9 @@ export interface NewspaperInPaperDTO {
   summaries: string[];
   tags: string[];
   date: string;
-  sector: string;
   publishedAt: string;
   createdAt: string;
   likeNum: number;
+  stockName: string;
+  stockCode: string;
 }
