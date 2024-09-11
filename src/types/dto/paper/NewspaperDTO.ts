@@ -7,7 +7,8 @@ export interface NewspaperDTO {
   summaries: string[];
   tags: string[];
   date: string;
-  sector: string;
+  stockName: string;
+  stockCode: string;
   publishedAt: string;
   createdAt: string;
   likeNum: number;
