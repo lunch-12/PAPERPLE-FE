@@ -3,10 +3,16 @@ import StockBanner from './StockBanner';
 interface ContentsTabProps {
   nickname: string;
   profileImage: string;
-  sector?: string | undefined;
+  stockName?: string | undefined;
+  stockCode?: string | undefined;
 }
 
-const PaperHeader = ({ nickname, profileImage, sector }: ContentsTabProps) => {
+const PaperHeader = ({
+  nickname,
+  profileImage,
+  stockName,
+  stockCode,
+}: ContentsTabProps) => {
   return (
     <div className="w-full flex items-center justify-between">
       <div className="flex items-center justify-center">
@@ -19,7 +25,9 @@ const PaperHeader = ({ nickname, profileImage, sector }: ContentsTabProps) => {
           {nickname}
         </p>
       </div>
-      {sector && <StockBanner sector={sector} />}
+      {stockName && stockCode && (
+        <StockBanner stockName={stockName} stockCode={stockCode} />
+      )}
     </div>
   );
 };
