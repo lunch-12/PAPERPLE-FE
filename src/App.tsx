@@ -19,6 +19,7 @@ import { STOCK_API_SECRET_KEY } from './config';
 
 function App() {
   const setStockData = useStockStore(state => state.setStockData);
+
   useEffect(() => {
     setScreenHeight();
 
