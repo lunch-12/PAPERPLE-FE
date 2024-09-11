@@ -7,6 +7,8 @@ import useAuthStore from '../stores/useAuthStore';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoginRequiredModal from '../components/LoginRequiredModal';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const UserPage = () => {
   const { isLoggedIn, nickname, profileImage, logout } = useAuthStore();
@@ -29,8 +31,13 @@ const UserPage = () => {
     }
   };
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = async () => {
     if (isLoggedIn) {
+      await axios.post(
+        `${API_BASE_URL}/oauth/logout`,
+        {},
+        { withCredentials: true },
+      );
       logout();
     } else {
       setModalOpen(true);

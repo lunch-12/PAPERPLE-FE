@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     const fetchStockData = async () => {
-      console.log('STOCK_API_SECRET_KEY: ', STOCK_API_SECRET_KEY);
       const url = `https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo?numOfRows=1000&resultType=json&serviceKey=${STOCK_API_SECRET_KEY}&basDt=20240909`;
       try {
         const response = await axios.get(url);
