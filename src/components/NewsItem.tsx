@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import NewsContent from './NewsContent';
 import NewsFooter from './NewsFooter';
 import NewsHeader from './NewsHeader';
@@ -29,6 +30,12 @@ const NewsItem = ({
   stockName,
   stockCode,
 }: NewsItemProps) => {
+  const navigate = useNavigate();
+
+  const handleWriteClick = () => {
+    navigate('./register-paper', { state: { link } });
+  };
+
   return (
     <div className="w-full">
       {isShowHeader && (
@@ -45,6 +52,7 @@ const NewsItem = ({
         publishedAt={publishedAt}
         createdAt={createdAt}
         likeNum={likeNum}
+        handleWriteClick={handleWriteClick}
       />
     </div>
   );
