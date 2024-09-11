@@ -48,7 +48,7 @@ const SearchPage = () => {
           title: `News title related to "${query}"`,
           link: 'https://example.com',
           image: 'https://via.placeholder.com/100',
-          summaries: ['Summary 1', 'Summary 2', 'Summary 3'],
+          summary: 'Summary',
           tags: ['Tag1', 'Tag2'],
           date: '2024-01-01',
           sector: 'News Sector',

@@ -15,7 +15,7 @@ export interface NewspaperInPaperDTO {
   title: string;
   link: string;
   image: string;
-  summaries: string[];
+  summary: string;
   tags: string[];
   date: string;
   publishedAt: string;

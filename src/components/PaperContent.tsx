@@ -26,7 +26,8 @@ const PaperContent = ({ content, newspaper }: PaperContentProps) => {
               isHotArticleBanner={false}
               title={newspaper.title}
               link={newspaper.link}
-              summaries={newspaper.summaries}
+              summary={newspaper.summary}
+              image={newspaper.image}
               tags={newspaper.tags}
               publishedAt={newspaper.publishedAt}
               createdAt={newspaper.createdAt}

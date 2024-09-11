@@ -8,7 +8,8 @@ interface NewsItemProps {
   isHotArticleBanner: boolean;
   title: string;
   link: string;
-  summaries: string[];
+  summary: string;
+  image: string;
   tags: string[];
   publishedAt: string;
   createdAt: string;
@@ -22,7 +23,8 @@ const NewsItem = ({
   isHotArticleBanner,
   title,
   link,
-  summaries,
+  summary,
+  image,
   tags,
   publishedAt,
   createdAt,
@@ -45,7 +47,7 @@ const NewsItem = ({
           stockCode={stockCode}
         />
       )}
-      <NewsContent title={title} link={link} summaries={summaries} />
+      <NewsContent title={title} link={link} summary={summary} image={image}/>
       <NewsFooter
         tags={tags}
         link={link}
