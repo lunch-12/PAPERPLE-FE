@@ -5,7 +5,6 @@ import NewsHeader from './NewsHeader';
 interface NewsItemProps {
   isShowHeader?: boolean;
   isHotArticleBanner: boolean;
-  sector: string;
   title: string;
   link: string;
   summaries: string[];
@@ -13,12 +12,13 @@ interface NewsItemProps {
   publishedAt: string;
   createdAt: string;
   likeNum: number;
+  stockName: string;
+  stockCode: string;
 }
 
 const NewsItem = ({
   isShowHeader = true,
   isHotArticleBanner,
-  sector,
   title,
   link,
   summaries,
@@ -26,11 +26,17 @@ const NewsItem = ({
   publishedAt,
   createdAt,
   likeNum,
+  stockName,
+  stockCode,
 }: NewsItemProps) => {
   return (
     <div className="w-full">
       {isShowHeader && (
-        <NewsHeader isHotArticleBanner={isHotArticleBanner} sector={sector} />
+        <NewsHeader
+          isHotArticleBanner={isHotArticleBanner}
+          stockName={stockName}
+          stockCode={stockCode}
+        />
       )}
       <NewsContent title={title} link={link} summaries={summaries} />
       <NewsFooter

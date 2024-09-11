@@ -18,7 +18,8 @@ const NewsList = () => {
       ],
       tags: ['IT/과학', '반도체'],
       date: '2023년 12월 28일',
-      sector: 'CJ제일제당',
+      stockName: '삼성전자',
+      stockCode: '005930',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -36,7 +37,8 @@ const NewsList = () => {
       ],
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
-      sector: 'CJ제일제당',
+      stockName: '카카오',
+      stockCode: '035720',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -54,7 +56,8 @@ const NewsList = () => {
       ],
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
-      sector: 'CJ제일제당',
+      stockName: '카카오',
+      stockCode: '035720',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -73,7 +76,8 @@ const NewsList = () => {
       ],
       tags: ['IT/과학', '반도체'],
       date: '2023년 12월 28일',
-      sector: 'CJ제일제당',
+      stockName: '카카오',
+      stockCode: '035720',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -91,7 +95,8 @@ const NewsList = () => {
       ],
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
-      sector: 'CJ제일제당',
+      stockName: '카카오',
+      stockCode: '035720',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -109,7 +114,8 @@ const NewsList = () => {
       ],
       tags: ['경제', '정치'],
       date: '2023년 12월 29일',
-      sector: 'CJ제일제당',
+      stockName: '카카오',
+      stockCode: '035720',
       publishedAt: '중앙일보',
       createdAt: '2024년 08월 19일',
       likeNum: 17,
@@ -126,7 +132,8 @@ const NewsList = () => {
           >
             <NewsItem
               isHotArticleBanner={news.isHotArticleBanner}
-              sector={news.sector}
+              stockName={news.stockName}
+              stockCode={news.stockCode}
               title={news.title}
               link={news.link}
               summaries={news.summaries}
