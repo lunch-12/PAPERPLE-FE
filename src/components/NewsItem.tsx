@@ -47,7 +47,7 @@ const NewsItem = ({
           stockCode={stockCode}
         />
       )}
-      <NewsContent title={title} link={link} summary={summary} image={image}/>
+      <NewsContent title={title} link={link} summary={summary} image={image} />
       <NewsFooter
         tags={tags}
         link={link}
