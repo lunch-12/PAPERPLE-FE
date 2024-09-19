@@ -36,7 +36,6 @@ const Header = () => {
       <button onClick={handleLogoClick}>
         <LogoIcon width={88} height={21} fill="#1E1E1E" />
       </button>
-      <button onClick={handlePostTest}>post test</button>
       <div className="flex items-center justify-center space-x-1">
         {location.pathname === '/' && (
           <SearchIcon
